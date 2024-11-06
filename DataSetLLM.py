@@ -14,7 +14,7 @@ from transformers import pipeline
 from transformers import T5Config, T5ForConditionalGeneration, T5Tokenizer
 
 
-import llama7bchat
+import llama31chat
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36'}
 api_key = "af1752b5cbfe44fcb3e41e452ca10881"
@@ -139,9 +139,9 @@ def data_generator(document, task, column_names): # takes a document, task, colu
     sentences = sent_tokenize(document.text)
 
     for sentence in sentences:
-        is_useful = llama7bchat.filter_useful_data(task, sentence)
+        is_useful = llama31chat.filter_useful_data(task, sentence)
         if is_useful:
-            data = llama7bchat.extract_data(sentence, column_names)
+            data = llama31chat.extract_data(sentence, column_names)
 
             for name in column_names:
                 for key in data.keys():
@@ -154,13 +154,6 @@ def data_generator(document, task, column_names): # takes a document, task, colu
 
 
     return df
-
-# TODO: create document similarity scorer based on task
-def document_retrieval(task):
-    pass
-
-
-
 
 ### TESTING
 import pickle
@@ -183,32 +176,3 @@ with open('facebook_ad_data.pickle', 'rb') as handle:
     ad_data = pickle.load(handle)
 
 print(ad_data, len(ad_data))
-
-'''database = []
-for topic in topics_list:
-    database.extend(newsApi_text_scraper_newspaper3k(topic))
-
-print('Done1!')       
-
-with open('database.pickle', 'wb') as handle:
-    pickle.dump(database, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-print('Done2!')'''
-
-
-#print(database[0].text)
-
-#df = question_answer_dataframe_generator(database[0])
-#print(df["Question"][0], df["Answer"][0], df["Context"][0])
-
-#Not bad... next is to
-
-# 1) Use an LLM to generate the q-a-c data sample
-''' 
-I want to be able to send in the prompt "Fine x, y, z, a, b, c ... given the following sentence: '...' as a Python
-list in the same order" into the Llama2 LLM and have it give me back that Python List
-
-
-'''
-# 2) filter for question-answer-context pairs that are useful for the given problem statement. 
-# 

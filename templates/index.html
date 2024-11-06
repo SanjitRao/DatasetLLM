@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset Creator</title>
+</head>
+<body>
+    <h1>Create Your Dataset</h1>
+    <form action="/generate" method="post">
+        <label for="description">Dataset Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+
+        <label for="num_rows">Number of Rows:</label><br>
+        <input type="number" id="num_rows" name="num_rows" min="1" required><br><br>
+
+        <label for="columns">Column Names (comma-separated):</label><br>
+        <input type="text" id="columns" name="columns" placeholder="col1, col2, col3" required><br><br>
+
+        <input type="submit" value="Generate Dataset">
+    </form>
+</body>
+</html>
