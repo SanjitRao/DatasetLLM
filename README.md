@@ -1,1 +1,3 @@
 DatasetLLM is my attempt at curating real-world datasets from data sourced directly from the Internet, through processing natural-language dataset queries, webscraping the appropriate articles, and using Llama 3 and Jsonformer to return the dataset in a parsable format. 
+
+Currently allows for natural-language queries, and generally returns filled-in datasets. Project is still a work in progress, and would love to build a website on top of this and release it online. 
